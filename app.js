@@ -4,8 +4,9 @@ var express 	  		  = require("express"),
 	bodyParser    		  = require("body-parser"),
 	passport	  		  = require("passport"),
 	methodOverride   	  = require("method-override"),
-	localStrategy 		  = require("passport-local"),
-	passportLocalMongoose = require("passport-local-mongoose")
+	localStrategy 		  = require("passport-local")
+
+require('dotenv').config()
 	
 var app = express();
 var coffee = require("./models/coffee");
