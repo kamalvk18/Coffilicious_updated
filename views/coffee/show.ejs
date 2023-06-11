@@ -1,0 +1,55 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<div class="card mb-3" style="width: 25rem;">
+				<img src="<%= coffee.image %>" class="img-fluid" >	
+				<div class="card-body">
+					<p class="card-title float-left" style="font-weight:700"><%= coffee.name %></p>	
+					<p class="card-text float-right"><strong>₹<%= coffee.price %></strong></p> <br>
+					<hr>
+					<p class="card-text">
+						<strong><%= coffee.desc %></strong>
+					</p>
+					<% if(currentUser && currentUser.username == "kamal"){ %>
+						<a class="btn btn-warning btn-sm" href="<%=coffee.id%>/edit">Edit</a>
+						<form class="d-inline" action="/menu/<%=coffee.id%>?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-sm ">Delete</button>
+						</form>	
+					<% } %>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="card" style="width: 25rem;">
+				<div class="card-body">
+					<p class="float-right">
+						<a href="/menu/<%= coffee._id%>/review/new" class="btn btn-success">Leave Review</a>
+					</p>
+					<br>
+					<hr>
+					<% coffee.reviews.forEach(function(review){ %>
+					<div id="comment">
+						<span style="font-weight:800;"><%=review.author.username%></span><span class="float-right"><%= moment(review.createdAt).fromNow() %></span>
+					<br>
+							<%= review.text %> 
+						<%if(currentUser && review.author.id.equals(currentUser._id)){%>
+						<div class="float-right">
+							<a href="/menu/<%=coffee._id%>/review/<%=review._id%>/edit" class="btn btn-sm btn-warning">
+								Edit
+							</a>
+							<form action="/menu/<%=coffee._id%>/review/<%=review._id%>?_method=DELETE" method="POST" class="delete-form">
+							<input type="submit" class="btn btn-sm btn-danger"value="Delete">
+							</form>
+						</div>
+						<%}%>
+					</div>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>

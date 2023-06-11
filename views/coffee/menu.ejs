@@ -1,0 +1,30 @@
+<%- include("../partials/header") %>
+<section>
+	<div class="container">
+	<div class="jumbotron">
+	  
+	  <h1 class="display-4">Welcome to Coffilicious</h1>
+	  <p class="lead">Premium coffee served with love </p>
+	  <hr class="my-4">
+		<%if(currentUser && currentUser.username==="kamal"){%>
+	   <a class="btn btn-primary btn-md" href="/menu/new" role="button">Add New Coffee</a> 
+		<%}else{%>
+			<p> Explore Now</p>
+		<%}%>
+	</div>
+	<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+	<% coffee.forEach(function(coffee){ %>
+	<div class="col-md-3 col-sm-6 d-flex">
+		<div class="card mb-4 " >
+		<img src="<%= coffee.image %>" class="card-img-top img-fluid" alt="https://image.flaticon.com/icons/svg/633/633652.svg">
+		<div class="card-body flex-fill">
+		<h5 class="card-title" style="font-weight: 500"><%= coffee.name %></h5>
+		<a href="/menu/<%= coffee._id%>" class="btn btn-secondary btn-sm">More Info</a>
+		</div>
+		</div>	
+	</div>
+	<% }) %>
+	</div>
+</div>
+</section>
+<%- include("../partials/footer") %>

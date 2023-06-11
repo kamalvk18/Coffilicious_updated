@@ -1,0 +1,63 @@
+<%- include("../partials/header") %> 
+<div class="container-fluid">
+	<div class="row justify-content-center">
+	<h1 class="col-md-12 text-center" >
+	Edit <%=coffee.name%> 
+	</h1>
+	<div class="col-sm-12 col-md-5 col-lg-3">
+		<form action="/menu/<%=coffee.id%>?_method=PUT" method="POST" class="form-validation" novalidate>
+			<div class="form-group">
+				<input class="form-control" type="text" name="name" placeholder="name" value=<%=coffee.name%> required>
+				<div class="valid-feedback">
+				Looks good!
+				</div>
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="image" placeholder="image URL" value=<%=coffee.image%> required>
+				<div class="valid-feedback">
+					Looks good!
+				</div>
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="number" name="price" placeholder="price" value=<%=coffee.price%> required>
+				<div class="valid-feedback">
+					Looks good!
+				</div>
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="desc" placeholder="description" value=<%=coffee.desc%> required>
+				<div class="valid-feedback">
+					Looks good!
+				</div>
+			</div>
+			<div class="form-group">
+			<button class="btn btn-md btn-block btn-primary"type="submit">
+				Submit
+			</button>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+	(function() {
+	  'use strict';
+	  window.addEventListener('load', function() {
+		// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		var forms = document.getElementsByClassName('form-validation');
+		// Loop over them and prevent submission
+		var validation = Array.prototype.filter.call(forms, function(form) {
+		  form.addEventListener('submit', function(event) {
+			if (form.checkValidity() === false) {
+			  event.preventDefault();
+			  event.stopPropagation();
+			}
+			form.classList.add('was-validated');
+		  }, false);
+		});
+	  }, false);
+	})();
+</script>
+
+<%- include("../partials/footer") %> 
